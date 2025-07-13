@@ -30,6 +30,7 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 - **CDN:** AWS CloudFront
 - **DNS:** AWS Route 53
 
+![Deploy](https://github.com/<your-username>/<your-repo>/actions/workflows/deploy.yml/badge.svg)
 ---
 
 ## 📦 Project Structure
@@ -44,4 +45,5 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 ---
 
 **Designed and developed by [Nihal Shetty](https://github.com/nihalshetty-boop) — feel free to explore, fork, or reach out!** 
+
 **This project was inspired by [Prithvi Yewale](https://github.com/cosmicwanderer7/Terminal-Portfolio)**
