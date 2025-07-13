@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihal's Terminal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css" media="only screen and (max-width: 900px)">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="close"></span>
+                    <span class="minimize"></span>
+                    <span class="maximize"></span>
+                </div>
+                <div class="terminal-title">nihalshetty@Terminal</div>
+                <div class="terminal-header-right"></div>
+            </div>
+            <div class="loading-text">
+                <span id="loading-message">Initializing terminal...</span>
+                <span class="cursor">|</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Terminal Interface -->
+    <div id="terminal" class="terminal hidden">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <span class="close"></span>
+                <span class="minimize"></span>
+                <span class="maximize"></span>
+            </div>
+            <div class="terminal-title">nihalshetty@Terminal</div>
+            <div class="terminal-header-right"></div>
+        </div>
+        
+        <div class="terminal-body">
+            <div id="output" class="output">
+                <div class="terminal-main-flex">
+                    <div class="ascii-art" id="ascii-art"></div>
+                    <div class="info-block" id="info-block"></div>
+                </div>
+            </div>
+            
+            <div class="input-line">
+                <span class="prompt">visitor@portfolio:~$</span>
+                <input type="text" id="command-input" class="command-input" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <div id="pdf-viewer-overlay" class="pdf-viewer-overlay hidden">
+        <div class="pdf-viewer-header">
+            <div class="pdf-viewer-buttons">
+                <span class="pdf-close"></span>
+                <span class="pdf-minimize"></span>
+                <span class="pdf-maximize"></span>
+            </div>
+            <span class="pdf-viewer-title">Resume - Nihal Shetty</span>
+        </div>
+        <iframe id="pdf-frame" src="assets/nihalshettyresume.pdf" frameborder="0"></iframe>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="interact.min.js"></script>
+    <script src="pdfViewer.js"></script>
+</body>
+</html> 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found | Nihal's Terminal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mobile.css" media="only screen and (max-width: 900px)">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { min-height: 100vh; }
+        .error-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .error-ascii {
+            font-family: 'Fira Mono', 'JetBrains Mono', 'Courier New', monospace;
+            color: #00ffb3;
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 24px;
+            white-space: pre;
+            text-align: center; 
+            text-shadow: 0 1px 8px #00ffb355;
+        }
+        .error-message {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        .error-btn {
+            background: #232526ee;
+            color: #00ffb3;
+            border: 1.5px solid #00ffb3;
+            border-radius: 6px;
+            padding: 12px 32px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: 0 2px 12px 0 #00ffb355;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .error-btn:hover {
+            background: #00ffb3;
+            color: #232526;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-ascii">
+{ERROR}
+ ______  _____   _____  _____   _____  
+|  ____||  __ \ |  __ \|  __ \ |  __ \ 
+| |__   | |__) || |__) | |  | || |__) |
+|  __|  |  _  / |  _  /| |  | ||  _  / 
+| |____ | | \ \ | | \ \| |__| || | \ \ 
+|______||_|  \_\|_|  \_\\____/ |_|  \_\
+        </div>
+        <div class="error-message">
+            Oops! The page you are looking for does not exist.<br>
+            <span style="color:#00ffb3">[404 Not Found]</span>
+        </div>
+        <button class="error-btn" onclick="window.location.href='index.html'">Return to Home</button>
+    </div>
+</body>
+</html> 
