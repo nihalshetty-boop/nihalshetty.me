@@ -1,4 +1,4 @@
-# Terminal Portfolio Portfolio
+# My Portfolio
 
 A modern, interactive terminal-style portfolio website that mimics a real terminal interface, designed and built by Nihal Shetty.
 
