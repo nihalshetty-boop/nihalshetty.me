@@ -6,7 +6,7 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 
 ---
 
-## ✨ Features
+## Features
 - Terminal-inspired UI with animated loading, ASCII art, and command prompt navigation
 - Info box with links to resume, GitHub, LinkedIn, and more
 - Responsive design for desktop and mobile
@@ -16,14 +16,14 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 - **HTML, CSS, JavaScript** (Vanilla)
 - **interact.js** (for draggable overlays)
 - **Custom mobile styles** (`mobile.css`)
 
 ---
 
-## 🌐 Hosting & Infrastructure
+## Hosting & Infrastructure
 - **Domain:** [nihalshetty.me](https://nihalshetty.me)
 - **Hosting:** AWS S3 (static site hosting)
 - **SSL:** AWS ACM (certificate management)
@@ -33,7 +33,7 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 ![Deploy](https://github.com/nihalshetty-boop/nihalshetty.me/actions/workflows/deploy.yml/badge.svg)
 ---
 
-## 📦 Project Structure
+## Project Structure
 - `index.html` — Main site
 - `styles.css` — Desktop styles
 - `mobile.css` — Mobile styles
@@ -46,4 +46,4 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 
 **Designed and developed by [Nihal Shetty](https://github.com/nihalshetty-boop) — feel free to explore, fork, or reach out!** 
 
-**This project was inspired by [Prithvi Yewale](https://github.com/cosmicwanderer7/Terminal-Portfolio)**
+**This project was inspired by [Prithvi Yewale's Terminal Portfolio](https://github.com/cosmicwanderer7/Terminal-Portfolio)**
