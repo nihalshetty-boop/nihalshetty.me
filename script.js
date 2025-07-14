@@ -7,78 +7,96 @@ const portfolioData = {
     github: "https://github.com/nihalshetty-boop",
     resume: "assets/nihalshettyresume.pdf",
     
-    about: `I'm a passionate full stack developer with expertise in modern web technologies. 
-I love building scalable applications and solving complex problems. 
+    about: `I'm a passionate full-stack developer with hands-on experience building scalable web and mobile applications using technologies like React, Node.js, FastAPI, MongoDB, and Swift. I’ve contributed to impactful projects across startups and academic environments—ranging from full-stack learning platforms to native iOS games—focusing on performance, usability, and clean architecture. With a strong foundation in data structures, backend systems, and cloud deployment (AWS, GCP, Docker), I enjoy working across the stack to solve real-world problems and deliver polished user experiences. I’ve also explored areas like CI/CD, authentication, and real-time communication, and I'm always excited to learn and apply new technologies to build meaningful software. I recently graduated with an M.S. in Computer Science at Indiana University, and I’m actively seeking full-time software engineering roles where I can contribute to impactful products and grow as a developer.
 When I'm not coding, you can find me exploring new technologies or contributing to open source projects.`,
     
     projects: [
         {
-            title: "E-Commerce Platform",
+            title: "Listri, an E-Commerce Platform",
             description: "A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.",
             tech: "React, Node.js, MongoDB, Stripe, Redux",
-            link: "https://github.com/nihal/ecommerce"
+            link: "https://github.com/nihalshetty-boop/listri"
         },
         {
-            title: "Task Management App",
-            description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-            tech: "Vue.js, Express.js, PostgreSQL, Socket.io",
-            link: "https://github.com/nihal/taskmanager"
+            title: "MyGlanceThing",
+            description: "A open source project that allows you to create a glanceable dashboard of your important data on the Spotify Car Thing.",
+            tech: "Electron, Vite, React, CSS, Node.js",
+            link: "https://github.com/nihalshetty-boop/MyGlanceThing"
         },
         {
-            title: "Weather Dashboard",
-            description: "A weather application that provides real-time weather data, forecasts, and interactive maps with location-based services.",
+            title: "2048-iOS",
+            description: "A-based services.",
             tech: "JavaScript, OpenWeather API, Chart.js, Geolocation API",
-            link: "https://github.com/nihal/weather-app"
+            link: "https://github.com/nihalshetty-boop/2048-iOS"
+        },
+        {
+            title: "CourseCraft Learning Management System",
+            description: "Developed a full-stack Learning Management System enabling instructors to create, manage and organize courses, assignments and student interactions. Optimized load times and database queries to improve overall performance,",
+            tech: "React, Express, Firebase, NodeJS",
+            link: "https://github.com/nihalshetty-boop/CourseCraft-LMS"
         },
         {
             title: "Portfolio Website",
             description: "This very terminal-style portfolio website you're currently viewing! Built with vanilla JavaScript and CSS.",
-            tech: "HTML, CSS, JavaScript, Terminal UI",
-            link: "https://github.com/nihal/portfolio"
+            tech: "HTML, CSS, JavaScript",
+            link: "https://github.com/nihalshetty-boop/nihalshetty.me"
+        },
+        {
+            title: "Syntax Analyser for C",
+            description: "A syntax analyser for C language that follows the rules of the C language and checks for errors in the code.",
+            tech: "Lex, C",
+            link: "https://github.com/nihalshetty-boop/Syntax-Analyser-for-C"
+        },
+        {
+            title: "Sorting Algorithms Visualizer",
+            description: "A sorting algorithms visualizer that allows you to visualize how different sorting algorithms work.",
+            tech: "HTML, CSS, JavaScript, PHP",
+            link: "https://github.com/nihalshetty-boop/Sorting-Algorithm-Visualiser"
         }
+
     ],
     
     experience: [
         {
-            title: "Senior Full Stack Developer",
-            company: "TechCorp Inc.",
-            date: "2022 - Present",
-            description: "Leading development of enterprise web applications, mentoring junior developers, and implementing best practices for code quality and deployment."
+            title: "Senior Consultant",
+            company: "Heartland Community Network",
+            date: "June 2025 – Present",
+            description: "Partnered with small businesses and organizations across Indiana to identify operational challenges and deliver tailored software solutions through web and app development."
         },
         {
-            title: "Full Stack Developer",
-            company: "StartupXYZ",
-            date: "2020 - 2022",
-            description: "Built and maintained multiple web applications, worked with React, Node.js, and various cloud services. Collaborated with cross-functional teams."
+            title: "Full Stack Developer Intern",
+            company: "Hyphenova",
+            date: "August 2024 – December 2024",
+            description: "Led the development of key user-facing features including onboarding, profile, chat and creator pages using custom component libraries and structured form handling, improving input validation and overall UX consistency."
         },
         {
-            title: "Frontend Developer",
-            company: "WebSolutions Ltd.",
-            date: "2018 - 2020",
-            description: "Developed responsive user interfaces, optimized application performance, and worked closely with designers to implement pixel-perfect designs."
+            title: "Full Stack Engineer Intern",
+            company: "Y STEM & Chess Inc.",
+            date: "May 2024 – August 2024",
+            description: "Assisted in migrating the company’s main platform from Angular to React, restructuring components and implementing routing via React Router to improve maintainability and frontend performance."
+        },
+        {
+            title: "FOSSEE Intern",
+            company: "Indian Institute of Technology – Bombay",
+            date: "March 2022 - October 2022",
+            description: "Spearheaded a critical Moodle platform upgrade for the Spoken Tutorial initiative by analyzing over 2,000 relational database tables and optimizing 32 performance-critical ones, ensuring schema alignment and improved query efficiency."
         }
     ],
     
     skills: {
-        "Frontend": ["React", "Vue.js", "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3", "Sass/SCSS", "Bootstrap", "Tailwind CSS"],
-        "Backend": ["Node.js", "Express.js", "Python", "Django", "Java", "Spring Boot", "REST APIs", "GraphQL"],
-        "Database": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase"],
-        "DevOps": ["Docker", "AWS", "Heroku", "CI/CD", "Git", "Linux"],
-        "Tools": ["VS Code", "Postman", "Jira", "Figma", "Adobe XD"]
+        "Programming Languages": ["Python", "Java", "C", "C++", "JavaScript", "TypeScript", "SQL", "Kotlin", "Swift", "PHP", "R", "MATLAB"],
+        "Web & App Development": ["React", "Angular", "Node.js", "Express", "Android Studio", "Xcode", "HTML", "CSS", "Flask", "Django", "Bootstrap", "MERN & MEAN Stack", "Streamlit", "Redux", "REST API", "Spring Boot", "Electron", "Vite", "GraphQL"],
+        "Databases/Datastores": ["SQL", "MongoDB", "PostgreSQL", "Firebase", "RDBMS", "MySQL", "Redis"],
+        "Cloud & DevOps": ["AWS", "GCP", "CI/CD", "Docker", "Kubernetes", "K8s", "GitHub Actions"],
+        "Miscellaneous": ["Data Structures", "Algorithms", "Linux", "Microsoft Azure", "Agile", "Git", "Jira", "Postman", "VS Code", "Version Control", "Operating Systems", "Computer Networks", "TCP/IP"]
     },
     
     publications: [
         {
-            title: "Building Scalable Web Applications with Microservices",
-            journal: "Tech Journal",
+            title: "Conversational AI Based College Enquiry Chatbot",
+            journal: "IJRASET",
             date: "2023",
-            link: "https://example.com/publication1"
-        },
-        {
-            title: "Modern JavaScript Patterns for Better Code Quality",
-            journal: "Developer Weekly",
-            date: "2022",
-            link: "https://example.com/publication2"
+            link: "https://doi.org/10.22214/ijraset.2023.51324"
         }
     ]
 };
@@ -126,7 +144,8 @@ class Terminal {
             contact: this.showContact.bind(this),
             resume: this.openResume.bind(this),
             ls: this.listCommands.bind(this),
-            whoami: this.showAbout.bind(this)
+            whoami: this.showAbout.bind(this),
+            'show-all': this.showAll.bind(this)
         };
         
         this.init();
@@ -213,26 +232,22 @@ class Terminal {
     }
     
     showWelcome() {
-        // Clear output to prevent duplicate welcome messages
         this.output.innerHTML = '';
-        // Recreate the flex structure
         this.output.innerHTML = `
             <div class="terminal-main-flex">
                 <div class="ascii-art" id="ascii-art"></div>
                 <div class="info-block" id="info-block"></div>
             </div>
         `;
-        // Render ASCII art left, info block right
         document.getElementById('ascii-art').textContent = asciiArt;
         document.getElementById('info-block').innerHTML = `
-            <div class="info-name">Nihal</div>
+            <div class="info-name">Nihal Dayanand Shetty</div>
             <div class="info-separator"></div>
             <a class="info-link" href="${portfolioData.resume}">${icons.resume} Resume &rarr; <span style="font-size:14px;">View my resume</span></a>
             <a class="info-link" href="${portfolioData.github}" target="_blank">${icons.github} GitHub &rarr; <span style="font-size:14px;">https://github.com/nihalshetty-boop</span></a>
             <a class="info-link" href="${portfolioData.linkedin}" target="_blank">${icons.linkedin} LinkedIn &rarr; <span style="font-size:14px;">https://www.linkedin.com/in/nihaldshetty/</span></a>
             <a class="info-link" href="mailto:${portfolioData.email}">${icons.email} Email &rarr; <span style="font-size:14px;">${portfolioData.email}</span></a>
         `;
-        // Add help prompt below
         this.addToOutput(`
             <div class="content-section">
                 <div class="section-content">
@@ -248,17 +263,14 @@ class Terminal {
         
         if (command === '') return;
         
-        // Add to command history
         this.commandHistory.push(command);
         this.historyIndex = this.commandHistory.length;
         
-        // Display command
         this.addToOutput(`<div class="command-history">
             <span class="prompt">visitor@portfolio:~$</span>
             <span class="command">${command}</span>
         </div>`);
         
-        // Process command
         if (this.commands[command]) {
             this.commands[command]();
         } else {
@@ -266,9 +278,6 @@ class Terminal {
                 <div class="output">Command not found: ${command}. Type <span class="help-command">help</span> for available commands.</div>
             </div>`);
         }
-        
-        // Scroll to bottom
-        this.scrollToBottom();
     }
     
     navigateHistory(direction) {
@@ -283,19 +292,19 @@ class Terminal {
             this.commandInput.value = '';
         }
         
-        // Move cursor to end
         this.commandInput.setSelectionRange(this.commandInput.value.length, this.commandInput.value.length);
     }
     
     addToOutput(content) {
         this.output.innerHTML += content;
+        this.scrollToBottom();
     }
     
     scrollToBottom() {
         const terminalBody = this.terminal.querySelector('.terminal-body');
         if (!terminalBody) return;
         const target = terminalBody.scrollHeight - terminalBody.clientHeight;
-        const step = 20; // pixels per frame (adjust for speed)
+        const step = 8; 
         function animateScroll() {
             const current = terminalBody.scrollTop;
             if (current < target) {
@@ -312,8 +321,8 @@ class Terminal {
             <div class="command-history">
                 <div class="output">
                     <div class="help-section">
-                        <span class="help-command">help</span>
-                        <span class="help-description">- Show this help message</span>
+                        <span class="help-command">show-all</span>
+                        <span class="help-description">- Show all sections at once</span>
                     </div>
                     <div class="help-section">
                         <span class="help-command">about</span>
@@ -351,6 +360,15 @@ class Terminal {
             </div>
         `;
         this.addToOutput(helpContent);
+    }
+
+    showAll() {
+        this.showAbout();
+        this.showProjects();
+        this.showExperience();
+        this.showSkills();
+        this.showPublications();
+        this.showContact();
     }
     
     showAbout() {
@@ -431,15 +449,15 @@ class Terminal {
             skillsContent += `
                 <div class="skill-category">
                     <div class="skill-category-title">${category}</div>
-                    <ul class="skill-list">
+                    <div class="skill-badges">
             `;
             
             skills.forEach(skill => {
-                skillsContent += `<li>${skill}</li>`;
+                skillsContent += `<span class="skill-badge">${skill}</span>`;
             });
             
             skillsContent += `
-                    </ul>
+                    </div>
                 </div>
             `;
         });
@@ -496,7 +514,6 @@ class Terminal {
     }
     
     openResume() {
-        // Show the PDF overlay
         const pdfOverlay = document.getElementById('pdf-viewer-overlay');
         if (pdfOverlay) pdfOverlay.classList.remove('hidden');
         this.addToOutput(`
@@ -516,9 +533,6 @@ class Terminal {
     }
 }
 
-// Remove PDF viewer logic from here
-
-// Initialize terminal when page loads
 document.addEventListener('DOMContentLoaded', () => {
     new Terminal();
     if (window.setupPDFViewer) window.setupPDFViewer();

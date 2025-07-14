@@ -472,6 +472,36 @@ body::before {
     left: 0;
 }
 
+.skill-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.skill-badge {
+    display: inline-block;
+    background: rgba(0,255,179,0.13);
+    color: #00ffb3;
+    border: 1px solid #00ffb3;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 4px;
+    box-shadow: 0 1px 6px 0 #00ffb322;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    cursor: default;
+    user-select: text;
+    white-space: nowrap;
+}
+
+.skill-badge:hover {
+    background: #00ffb3;
+    color: #232526;
+    border-color: #00ffb3;
+}
+
 /* Experience Timeline */
 .experience-item {
     margin: 20px 0;
