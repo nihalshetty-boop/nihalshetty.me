@@ -30,7 +30,8 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 - **CDN:** AWS CloudFront
 - **DNS:** AWS Route 53
 
-![Deploy](https://github.com/nihalshetty-boop/nihalshetty.me/actions/workflows/deploy.yml/badge.svg)
+[![Deploy to GitHub Pages](https://img.shields.io/github/deployments/<your-username>/<your-repo>/github-pages)](https://github.com/<your-username>/<your-repo>/actions)
+
 ---
 
 ## Project Structure
