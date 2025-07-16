@@ -1,6 +1,6 @@
 # My Portfolio
 
-A modern, interactive terminal-style portfolio website that mimics a real terminal interface, designed and built by Nihal Shetty.
+A modern, interactive terminal-style portfolio website that mimics a real terminal interface.
 
 **Live at:** [nihalshetty.me](https://nihalshetty.me)
 
@@ -30,7 +30,7 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 - **CDN:** AWS CloudFront
 - **DNS:** AWS Route 53
 
-[![Deploy to GitHub Pages](https://img.shields.io/github/deployments/<your-username>/<your-repo>/github-pages)](https://github.com/<your-username>/<your-repo>/actions)
+[![Deploy to GitHub Pages](https://img.shields.io/github/deployments/nihalshetty-boop/nihalshetty.me/github-pages)](https://github.com/<your-username>/<your-repo>/actions)
 
 ---
 
