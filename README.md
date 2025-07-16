@@ -25,10 +25,10 @@ A modern, interactive terminal-style portfolio website that mimics a real termin
 
 ## Hosting & Infrastructure
 - **Domain:** [nihalshetty.me](https://nihalshetty.me)
-- **Hosting:** AWS S3 (static site hosting)
-- **SSL:** AWS ACM (certificate management)
-- **CDN:** AWS CloudFront
-- **DNS:** AWS Route 53
+- **Hosting:** GitHub Pages (static site hosting)
+- **SSL:** GitHub Pages (Let’s Encrypt auto-managed certificate)
+- **CDN:** GitHub Pages global CDN
+- **DNS:** Namecheap (BasicDNS with A records pointing to GitHub Pages)
 
 [![Deploy to GitHub Pages](https://img.shields.io/github/deployments/nihalshetty-boop/nihalshetty.me/github-pages)](https://github.com/<your-username>/<your-repo>/actions)
 
