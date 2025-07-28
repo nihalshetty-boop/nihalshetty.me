@@ -7,6 +7,8 @@ const portfolioData = {
     github: "https://github.com/nihalshetty-boop",
     resume: "assets/nihalshettyresume.pdf",
     
+
+    
     themes: {
         "default": {
             name: "Default",
@@ -218,6 +220,7 @@ class Terminal {
         this.loadingSkipped = false;
         this.userScrolled = false;
         this.lastScrollTop = 0;
+        this.particles = [];
         
         this.commands = {
             help: this.showHelp.bind(this),
@@ -249,7 +252,56 @@ class Terminal {
         }
     }
     
+
+    
+    // Particle System
+    initParticles() {
+        this.createParticles();
+        setInterval(() => this.createParticle(), 1500);
+    }
+    
+    createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+        
+        // Create initial particles
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => this.createParticle(), i * 300);
+        }
+    }
+    
+    createParticle() {
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+        
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random size
+        const size = Math.random() * 8 + 4;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Random position
+        const x = Math.random() * window.innerWidth;
+        particle.style.left = x + 'px';
+        
+        // Random animation duration
+        const duration = Math.random() * 4 + 6;
+        particle.style.animationDuration = duration + 's';
+        
+        particlesContainer.appendChild(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, duration * 1000);
+    }
+    
     init() {
+        this.initParticles();
         this.startLoadingAnimation();
         this.setupEventListeners();
         const minimizeBtn = this.loadingScreen.querySelector('.minimize');
@@ -321,9 +373,7 @@ class Terminal {
             }
         });
         
-        this.terminal.addEventListener('click', () => {
-            this.commandInput.focus();
-        });
+
         
         const terminalBody = this.terminal.querySelector('.terminal-body');
         if (terminalBody) {
@@ -334,10 +384,12 @@ class Terminal {
                 
                 if (currentScrollTop < this.lastScrollTop) {
                     this.userScrolled = true;
+                    console.log('User scrolled up - auto-scroll disabled');
                 }
                 
                 if (currentScrollTop + clientHeight >= scrollHeight - 10) {
                     this.userScrolled = false;
+                    console.log('User at bottom - auto-scroll enabled');
                 }
                 
                 this.lastScrollTop = currentScrollTop;
@@ -431,7 +483,7 @@ class Terminal {
         this.commandInput.setSelectionRange(this.commandInput.value.length, this.commandInput.value.length);
     }
     
-    addToOutput(content) {
+    addToOutput(content, shouldScroll = true) {
         this.output.innerHTML += content;
         
         const currentTheme = localStorage.getItem('terminal-theme') || 'default';
@@ -440,7 +492,9 @@ class Terminal {
             this.updateThemeElements(theme);
         }
         
-        this.scrollToBottom();
+        if (shouldScroll) {
+            this.scrollToBottom();
+        }
     }
     
     scrollToBottom() {
@@ -448,9 +502,11 @@ class Terminal {
         if (!terminalBody) return;
         
         if (this.userScrolled) {
+            console.log('Auto-scroll blocked - user has scrolled up');
             return;
         }
         
+        console.log('Auto-scrolling to bottom');
         const target = terminalBody.scrollHeight - terminalBody.clientHeight;
         const step = 8; 
         
@@ -771,13 +827,14 @@ class Terminal {
         this.updateInfoBox(theme);
         this.updateThemeElements(theme);
         this.updateLoadingScreen(theme);
+        this.updateParticleColors(theme);
         localStorage.setItem('terminal-theme', themeName);
         
         this.addToOutput(`
             <div class="command-history">
                 <div class="output">Theme applied: <span style="color: ${theme.colors.primary};">${theme.name}</span></div>
             </div>
-        `);
+        `, false);
     }
     
     updateAsciiArt(themeName) {
@@ -848,6 +905,8 @@ class Terminal {
         commands.forEach(cmd => {
             cmd.style.color = theme.colors.secondary;
         });
+        
+
     }
     
     updateLoadingScreen(theme) {
@@ -870,6 +929,15 @@ class Terminal {
             cursor.style.color = theme.colors.primary;
         }
     }
+    
+    updateParticleColors(theme) {
+        const particles = document.querySelectorAll('.particle');
+        particles.forEach(particle => {
+            particle.style.background = theme.colors.primary;
+        });
+    }
+
+
     
     clear() {
         this.output.innerHTML = '';
