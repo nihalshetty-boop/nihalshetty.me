@@ -31,6 +31,17 @@ function setupPDFViewer() {
             const link = e.target.closest('.info-link');
             if (link && link.href && link.href.endsWith('nihalshettyresume.pdf')) {
                 e.preventDefault();
+                pdfFrame.src = 'assets/nihalshettyresume.pdf';
+                document.querySelector('.pdf-viewer-title').textContent = 'Resume - Nihal Shetty';
+                centerOverlay();
+                if (pdfOverlay) pdfOverlay.classList.remove('hidden');
+            }
+            
+            const publicationLink = e.target.closest('.publication-pdf-link');
+            if (publicationLink && publicationLink.href && publicationLink.href.endsWith('doc.pdf')) {
+                e.preventDefault();
+                pdfFrame.src = 'assets/doc.pdf';
+                document.querySelector('.pdf-viewer-title').textContent = 'Publication - Nihal Shetty';
                 centerOverlay();
                 if (pdfOverlay) pdfOverlay.classList.remove('hidden');
             }
@@ -46,7 +57,12 @@ function setupPDFViewer() {
         });
 
         pdfMaximize.addEventListener('click', () => {
-            window.open('assets/nihalshettyresume.pdf', '_blank');
+            const currentSrc = pdfFrame.src;
+            if (currentSrc.includes('nihalshettyresume.pdf')) {
+                window.open('assets/nihalshettyresume.pdf', '_blank');
+            } else if (currentSrc.includes('doc.pdf')) {
+                window.open('assets/doc.pdf', '_blank');
+            }
             pdfOverlay.classList.add('hidden');
         });
     }

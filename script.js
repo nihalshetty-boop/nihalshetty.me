@@ -7,7 +7,90 @@ const portfolioData = {
     github: "https://github.com/nihalshetty-boop",
     resume: "assets/nihalshettyresume.pdf",
     
-    about: `I'm a passionate full-stack developer with hands-on experience building scalable web and mobile applications using technologies like React, Node.js, FastAPI, MongoDB, and Swift. I’ve contributed to impactful projects across startups and academic environments—ranging from full-stack learning platforms to native iOS games—focusing on performance, usability, and clean architecture. With a strong foundation in data structures, backend systems, and cloud deployment (AWS, GCP, Docker), I enjoy working across the stack to solve real-world problems and deliver polished user experiences. I’ve also explored areas like CI/CD, authentication, and real-time communication, and I'm always excited to learn and apply new technologies to build meaningful software. I recently graduated with an M.S. in Computer Science at Indiana University, and I’m actively seeking full-time software engineering roles where I can contribute to impactful products and grow as a developer.
+    themes: {
+        "default": {
+            name: "Default",
+            description: "Classic terminal green",
+            colors: {
+                primary: "#00ffb3",
+                secondary: "#00fff7",
+                background: "rgba(30, 32, 40, 0.7)",
+                text: "#fff",
+                accent: "#00ffb3"
+            },
+            effects: {
+                glow: "0 0 10px rgba(0, 255, 179, 0.5)",
+                shadow: "0 2px 8px rgba(0, 255, 179, 0.3)"
+            },
+            wallpaper: "assets/wallpaper.jpg"
+        },
+        "retro": {
+            name: "Retro",
+            description: "Old-school amber terminal",
+            colors: {
+                primary: "#ffb300",
+                secondary: "#ff8c00",
+                background: "rgba(20, 20, 20, 0.8)",
+                text: "#ffb300",
+                accent: "#ff8c00"
+            },
+            effects: {
+                glow: "0 0 15px rgba(255, 179, 0, 0.6)",
+                shadow: "0 2px 10px rgba(255, 179, 0, 0.4)"
+            },
+            wallpaper: "assets/wallpaper-retro.jpg"
+        },
+        "cyberpunk": {
+            name: "Cyberpunk",
+            description: "Neon pink and blue",
+            colors: {
+                primary: "#ff00ff",
+                secondary: "#00ffff",
+                background: "rgba(10, 10, 30, 0.8)",
+                text: "#ffffff",
+                accent: "#ff00ff"
+            },
+            effects: {
+                glow: "0 0 20px rgba(255, 0, 255, 0.7)",
+                shadow: "0 4px 15px rgba(255, 0, 255, 0.5)"
+            },
+            wallpaper: "assets/wallpaper-cyberpunk.jpeg"
+        },
+        "matrix": {
+            name: "Matrix",
+            description: "Green Matrix style",
+            colors: {
+                primary: "#00ff00",
+                secondary: "#00cc00",
+                background: "rgba(0, 20, 0, 0.9)",
+                text: "#00ff00",
+                accent: "#00cc00"
+            },
+            effects: {
+                glow: "0 0 25px rgba(0, 255, 0, 0.8)",
+                shadow: "0 3px 12px rgba(0, 255, 0, 0.6)"
+            },
+            wallpaper: "assets/wallpaper-matrix.jpg"
+        },
+        "ocean": {
+            name: "Ocean",
+            description: "Deep blue sea",
+            colors: {
+                primary: "#00bfff",
+                secondary: "#0080ff",
+                background: "rgba(0, 20, 40, 0.8)",
+                text: "#ffffff",
+                accent: "#00bfff"
+            },
+            effects: {
+                glow: "0 0 12px rgba(0, 191, 255, 0.6)",
+                shadow: "0 2px 10px rgba(0, 191, 255, 0.4)"
+            },
+            wallpaper: "assets/wallpaper-ocean.jpg"
+        }
+    },
+    
+    about: `I'm a passionate full-stack developer with hands-on experience building scalable web and mobile applications using technologies like React, Node.js, FastAPI, MongoDB, and Swift. I've contributed to impactful projects across startups and academic environments—ranging from full-stack learning platforms to native iOS games—focusing on performance, usability, and clean architecture. With a strong foundation in data structures, backend systems, and cloud deployment (AWS, GCP, Docker), I enjoy working across the stack to solve real-world problems and deliver polished user experiences. I've also explored areas like CI/CD, authentication, and real-time communication, and I'm always excited to learn and apply new technologies to build meaningful software. I recently graduated with an M.S. in Computer Science at Indiana University, and I'm actively seeking full-time software engineering roles where I can contribute to impactful products and grow as a developer.
 When I'm not coding, you can find me exploring new technologies or contributing to open source projects.`,
     
     projects: [
@@ -96,7 +179,8 @@ When I'm not coding, you can find me exploring new technologies or contributing 
             title: "Conversational AI Based College Enquiry Chatbot",
             journal: "IJRASET",
             date: "2023",
-            link: "https://doi.org/10.22214/ijraset.2023.51324"
+            link: "https://doi.org/10.22214/ijraset.2023.51324",
+            pdf: "assets/doc.pdf"
         }
     ]
 };
@@ -132,6 +216,8 @@ class Terminal {
         this.historyIndex = -1;
         this.loadingTimeout = null;
         this.loadingSkipped = false;
+        this.userScrolled = false;
+        this.lastScrollTop = 0;
         
         this.commands = {
             help: this.showHelp.bind(this),
@@ -143,25 +229,35 @@ class Terminal {
             clear: this.clear.bind(this),
             contact: this.showContact.bind(this),
             resume: this.openResume.bind(this),
+            publication: this.openPublication.bind(this),
+            theme: this.showThemes.bind(this),
             ls: this.listCommands.bind(this),
             whoami: this.showAbout.bind(this),
             'show-all': this.showAll.bind(this)
         };
         
         this.init();
+        
+        const savedTheme = localStorage.getItem('terminal-theme');
+        if (savedTheme && portfolioData.themes[savedTheme]) {
+            this.applyTheme(savedTheme);
+        } else {
+            document.body.style.backgroundImage = "url('assets/wallpaper.jpg')";
+            const defaultTheme = portfolioData.themes.default;
+            this.updateLoadingScreen(defaultTheme);
+            this.updateThemeElements(defaultTheme);
+        }
     }
     
     init() {
         this.startLoadingAnimation();
         this.setupEventListeners();
-        // Add skip animation for dev: minimize icon
         const minimizeBtn = this.loadingScreen.querySelector('.minimize');
         if (minimizeBtn) {
             minimizeBtn.addEventListener('click', () => {
                 this.skipLoadingAnimation();
             });
         }
-        // Easter egg: close icon hides everything
         const closeBtn = this.loadingScreen.querySelector('.close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -225,10 +321,28 @@ class Terminal {
             }
         });
         
-        // Focus input when clicking anywhere in terminal
         this.terminal.addEventListener('click', () => {
             this.commandInput.focus();
         });
+        
+        const terminalBody = this.terminal.querySelector('.terminal-body');
+        if (terminalBody) {
+            terminalBody.addEventListener('scroll', () => {
+                const currentScrollTop = terminalBody.scrollTop;
+                const scrollHeight = terminalBody.scrollHeight;
+                const clientHeight = terminalBody.clientHeight;
+                
+                if (currentScrollTop < this.lastScrollTop) {
+                    this.userScrolled = true;
+                }
+                
+                if (currentScrollTop + clientHeight >= scrollHeight - 10) {
+                    this.userScrolled = false;
+                }
+                
+                this.lastScrollTop = currentScrollTop;
+            });
+        }
     }
     
     showWelcome() {
@@ -248,17 +362,26 @@ class Terminal {
             <a class="info-link" href="${portfolioData.linkedin}" target="_blank">${icons.linkedin} LinkedIn &rarr; <span style="font-size:14px;">https://www.linkedin.com/in/nihaldshetty/</span></a>
             <a class="info-link" href="mailto:${portfolioData.email}">${icons.email} Email &rarr; <span style="font-size:14px;">${portfolioData.email}</span></a>
         `;
+        
+        const currentTheme = localStorage.getItem('terminal-theme') || 'default';
+        const theme = portfolioData.themes[currentTheme];
+        if (theme) {
+            this.updateAsciiArt(currentTheme);
+            this.updateInfoBox(theme);
+            this.updateThemeElements(theme);
+        }
+        
         this.addToOutput(`
             <div class="content-section">
                 <div class="section-content">
-                    Welcome to my terminal portfolio! Type <span class="help-command">help</span> to see available commands.
+                    Welcome to my terminal portfolio! Type <span class="help-command">help</span>to see available commands.
                 </div>
             </div>
         `);
     }
     
     processCommand() {
-        const command = this.commandInput.value.trim().toLowerCase();
+        const command = this.commandInput.value.trim();
         this.commandInput.value = '';
         
         if (command === '') return;
@@ -266,16 +389,29 @@ class Terminal {
         this.commandHistory.push(command);
         this.historyIndex = this.commandHistory.length;
         
+        this.userScrolled = false;
+        
         this.addToOutput(`<div class="command-history">
             <span class="prompt">visitor@portfolio:~$</span>
             <span class="command">${command}</span>
         </div>`);
         
-        if (this.commands[command]) {
-            this.commands[command]();
+        const commandLower = command.toLowerCase();
+        const parts = command.split(' ');
+        const mainCommand = parts[0].toLowerCase();
+        const args = parts.slice(1);
+        
+        if (mainCommand === 'theme') {
+            if (args.length === 0) {
+                this.commands['theme']();
+            } else {
+                this.applyTheme(args[0].toLowerCase());
+            }
+        } else if (this.commands[mainCommand]) {
+            this.commands[mainCommand]();
         } else {
             this.addToOutput(`<div class="command-history">
-                <div class="output">Command not found: ${command}. Type <span class="help-command">help</span> for available commands.</div>
+                <div class="output">Command not found: ${mainCommand}. Type <span class="help-command">help</span> for available commands.</div>
             </div>`);
         }
     }
@@ -297,14 +433,27 @@ class Terminal {
     
     addToOutput(content) {
         this.output.innerHTML += content;
+        
+        const currentTheme = localStorage.getItem('terminal-theme') || 'default';
+        const theme = portfolioData.themes[currentTheme];
+        if (theme) {
+            this.updateThemeElements(theme);
+        }
+        
         this.scrollToBottom();
     }
     
     scrollToBottom() {
         const terminalBody = this.terminal.querySelector('.terminal-body');
         if (!terminalBody) return;
+        
+        if (this.userScrolled) {
+            return;
+        }
+        
         const target = terminalBody.scrollHeight - terminalBody.clientHeight;
         const step = 8; 
+        
         function animateScroll() {
             const current = terminalBody.scrollTop;
             if (current < target) {
@@ -351,6 +500,14 @@ class Terminal {
                     <div class="help-section">
                         <span class="help-command">resume</span>
                         <span class="help-description">- Download my resume</span>
+                    </div>
+                    <div class="help-section">
+                        <span class="help-command">publication</span>
+                        <span class="help-description">- View my publication PDF</span>
+                    </div>
+                    <div class="help-section">
+                        <span class="help-command">theme</span>
+                        <span class="help-description">- Change terminal theme</span>
                     </div>
                     <div class="help-section">
                         <span class="help-command">clear</span>
@@ -484,6 +641,7 @@ class Terminal {
                     <div class="experience-company">${pub.journal}</div>
                     <div class="experience-date">${pub.date}</div>
                     <a href="${pub.link}" class="link" target="_blank">Read Publication →</a>
+                    ${pub.pdf ? `<a href="${pub.pdf}" class="link publication-pdf-link">View PDF →</a>` : ''}
                 </div>
             `;
         });
@@ -515,12 +673,202 @@ class Terminal {
     
     openResume() {
         const pdfOverlay = document.getElementById('pdf-viewer-overlay');
-        if (pdfOverlay) pdfOverlay.classList.remove('hidden');
+        const pdfFrame = document.getElementById('pdf-frame');
+        if (pdfOverlay && pdfFrame) {
+            pdfFrame.src = 'assets/nihalshettyresume.pdf';
+            document.querySelector('.pdf-viewer-title').textContent = 'Resume - Nihal Shetty';
+            pdfOverlay.classList.remove('hidden');
+        }
         this.addToOutput(`
             <div class="command-history">
                 <div class="output">Opening resume in viewer...</div>
             </div>
         `);
+    }
+    
+    openPublication() {
+        const pdfOverlay = document.getElementById('pdf-viewer-overlay');
+        const pdfFrame = document.getElementById('pdf-frame');
+        if (pdfOverlay && pdfFrame) {
+            pdfFrame.src = 'assets/doc.pdf';
+            document.querySelector('.pdf-viewer-title').textContent = 'Publication - Nihal Shetty';
+            pdfOverlay.classList.remove('hidden');
+        }
+        this.addToOutput(`
+            <div class="command-history">
+                <div class="output">Opening publication in viewer...</div>
+            </div>
+        `);
+    }
+    
+    showThemes() {
+        let themesContent = `
+            <div class="command-history">
+                <div class="output">
+                    <div class="section-title">Available Themes</div>
+                    <div class="themes-grid">
+        `;
+        
+        Object.entries(portfolioData.themes).forEach(([key, theme]) => {
+            themesContent += `
+                <div class="theme-card" data-theme="${key}" style="background: ${theme.colors.background}; border-color: ${theme.colors.primary};">
+                    <div class="theme-name" style="color: ${theme.colors.primary};">${theme.name}</div>
+                    <div class="theme-description" style="color: ${theme.colors.text};">${theme.description}</div>
+                    <button class="theme-apply-btn" onclick="window.terminal.applyTheme('${key}')" style="background: ${theme.colors.primary}; color: ${theme.colors.background};">Apply</button>
+                </div>
+            `;
+        });
+        
+        themesContent += `
+                    </div>
+                    <div class="theme-info">
+                        <p>Type <span class="command-highlight">theme [name]</span> to apply a theme directly.</p>
+                        <p>Example: <span class="command-highlight">theme cyberpunk</span></p>
+                    </div>
+                </div>
+            </div>
+        `;
+        this.addToOutput(themesContent);
+    }
+    
+    applyTheme(themeName) {
+        const theme = portfolioData.themes[themeName];
+        if (!theme) {
+            this.addToOutput(`
+                <div class="command-history">
+                    <div class="output">Theme '${themeName}' not found. Type 'theme' to see available themes.</div>
+                </div>
+            `);
+            return;
+        }
+        
+        const root = document.documentElement;
+        root.style.setProperty('--primary-color', theme.colors.primary);
+        root.style.setProperty('--secondary-color', theme.colors.secondary);
+        root.style.setProperty('--background-color', theme.colors.background);
+        root.style.setProperty('--text-color', theme.colors.text);
+        root.style.setProperty('--accent-color', theme.colors.accent);
+        
+        root.style.setProperty('--glow-effect', theme.effects.glow);
+        root.style.setProperty('--shadow-effect', theme.effects.shadow);
+        
+        const wallpaperUrl = theme.wallpaper;
+        
+        console.log(`Changing wallpaper to: ${wallpaperUrl}`);
+        
+        const img = new Image();
+        img.onload = () => {
+            console.log(`Wallpaper loaded successfully: ${wallpaperUrl}`);
+            document.body.style.backgroundImage = `url('${wallpaperUrl}')`;
+        };
+        img.onerror = () => {
+            console.error(`Failed to load wallpaper: ${wallpaperUrl}`);
+            document.body.style.backgroundImage = "url('assets/wallpaper.jpg')";
+        };
+        img.src = wallpaperUrl;
+        
+        this.updateAsciiArt(themeName); 
+        this.updateInfoBox(theme);
+        this.updateThemeElements(theme);
+        this.updateLoadingScreen(theme);
+        localStorage.setItem('terminal-theme', themeName);
+        
+        this.addToOutput(`
+            <div class="command-history">
+                <div class="output">Theme applied: <span style="color: ${theme.colors.primary};">${theme.name}</span></div>
+            </div>
+        `);
+    }
+    
+    updateAsciiArt(themeName) {
+        const asciiElement = document.getElementById('ascii-art');
+        if (!asciiElement) return;
+        
+        // Reset to default styling
+        asciiElement.style.fontFamily = '';
+        asciiElement.style.fontWeight = '';
+        asciiElement.style.letterSpacing = '';
+        asciiElement.style.animation = '';
+        asciiElement.style.textShadow = 'var(--shadow-effect)';
+        
+        // Add theme-specific effects only
+        switch(themeName) {
+            case 'matrix':
+                asciiElement.style.animation = 'matrixGlow 2s ease-in-out infinite alternate';
+                asciiElement.style.textShadow = 'var(--glow-effect)';
+                break;
+            default:
+                asciiElement.style.textShadow = 'var(--glow-effect)';
+                break;
+        }
+    }
+    
+    updateInfoBox(theme) {
+        const infoBlock = document.getElementById('info-block');
+        if (!infoBlock) return;
+        
+        // Update links with theme colors
+        const links = infoBlock.querySelectorAll('.info-link');
+        links.forEach(link => {
+            link.style.color = theme.colors.primary;
+            link.style.textShadow = theme.effects.shadow;
+        });
+        
+        // Update name styling
+        const nameElement = infoBlock.querySelector('.info-name');
+        if (nameElement) {
+            nameElement.style.color = theme.colors.primary;
+            nameElement.style.textShadow = theme.effects.glow;
+        }
+    }
+    
+    updateThemeElements(theme) {
+        // Update help commands
+        const helpCommands = document.querySelectorAll('.help-command');
+        helpCommands.forEach(cmd => {
+            cmd.style.color = theme.colors.primary;
+            cmd.style.textShadow = theme.effects.shadow;
+        });
+        
+        // Update prompts
+        const prompts = document.querySelectorAll('.prompt');
+        prompts.forEach(prompt => {
+            prompt.style.color = theme.colors.primary;
+            prompt.style.textShadow = theme.effects.shadow;
+        });
+        
+        // Update content sections
+        const contentSections = document.querySelectorAll('.content-section');
+        contentSections.forEach(section => {
+            section.style.color = theme.colors.text;
+        });
+        
+        // Update command text
+        const commands = document.querySelectorAll('.command');
+        commands.forEach(cmd => {
+            cmd.style.color = theme.colors.secondary;
+        });
+    }
+    
+    updateLoadingScreen(theme) {
+        const loadingContent = document.querySelector('.loading-content');
+        if (!loadingContent) return;
+        
+        // Update loading content glow and border
+        loadingContent.style.boxShadow = `0 0 20px ${theme.colors.primary}40`;
+        loadingContent.style.border = `1px solid ${theme.colors.primary}60`;
+        
+        // Update loading text color
+        const loadingText = document.querySelector('.loading-text');
+        if (loadingText) {
+            loadingText.style.color = theme.colors.primary;
+        }
+        
+        // Update cursor color
+        const cursor = document.querySelector('.cursor');
+        if (cursor) {
+            cursor.style.color = theme.colors.primary;
+        }
     }
     
     clear() {
@@ -534,6 +882,6 @@ class Terminal {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new Terminal();
+    window.terminal = new Terminal();
     if (window.setupPDFViewer) window.setupPDFViewer();
 }); 
