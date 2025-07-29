@@ -199,6 +199,17 @@ const asciiArt = `
 Software Engineer / Full Stack Developer
 `;
 
+const mobileAsciiArt = `
+███╗   ██╗██╗██╗  ██╗ █████╗ ██╗     
+████╗  ██║██║██║  ██║██╔══██╗██║     
+██╔██╗ ██║██║███████║███████║██║     
+██║╚██╗██║██║██╔══██║██╔══██║██║     
+ ██║ ╚████║██║██║  ██║██║  ██║███████╗ 
+ ╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝ 
+                                      
+Software Engineer / Full Stack Developer
+`;
+
 // SVG icons
 const icons = {
     resume: `<svg class='info-icon' viewBox='0 0 20 20' fill='none'><path d='M6 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.83a2 2 0 0 0-.59-1.41l-3.83-3.83A2 2 0 0 0 10.17 2H6zm4 1.5V7a1 1 0 0 0 1 1h3.5' stroke='#00ffb3' stroke-width='1.2'/></svg>`,
@@ -405,10 +416,10 @@ class Terminal {
                 <div class="info-block" id="info-block"></div>
             </div>
         `;
-        document.getElementById('ascii-art').textContent = asciiArt;
-        
-        // Check if mobile device
+
+        // Use mobile ASCII art for mobile, regular for desktop
         const isMobile = window.innerWidth <= 900;
+        document.getElementById('ascii-art').textContent = isMobile ? mobileAsciiArt : asciiArt;
         
         // Create shorter URLs for mobile
         const githubUrl = isMobile ? 'github.com/nihalshetty-boop' : 'https://github.com/nihalshetty-boop';
