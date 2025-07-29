@@ -1,11 +1,12 @@
 @media only screen and (max-width: 900px) {
   .terminal {
     width: calc(100vw - 20px);
-    height: calc(100vh - 60px);
+    height: calc(100vh - 80px);
     position: fixed;
-    top: 10px;
-    left: 10px;
-    right: 10px;
+    top: max(20px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
     min-width: unset;
     max-width: unset;
     border-radius: 8px;
