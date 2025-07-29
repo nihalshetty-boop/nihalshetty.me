@@ -1,11 +1,17 @@
 @media only screen and (max-width: 900px) {
   .terminal {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 120px);
+    margin: 60px 10px 60px 10px;
     min-width: unset;
     max-width: unset;
-    border-radius: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
   .terminal-header {
     border-radius: 0;
@@ -31,15 +37,41 @@
     max-width: unset;
     width: 100%;
     padding: 16px 8px;
-    font-size: 15px;
+    font-size: 8px;
     margin-top: 0;
+  }
+  
+  .info-block .info-link {
+    display: block;
+    margin-bottom: 3px;
+    line-height: 1.1;
+    font-size: 12px !important;
+    white-space: nowrap;
+  }
+  
+  .info-block .info-link span {
+    display: inline !important;
+    margin-left: 2px !important;
+    font-size: 12px !important;
+    /* opacity: 0.6 !important; */
+  }
+  
+  .info-name {
+    font-size: 18px !important;
+    margin-bottom: 6px;
+    align-self: center !important;
+    text-align: center !important;
+  }
+  
+  .info-separator {
+    margin: 6px 0;
   }
   .input-line {
     padding: 8px 4px;
     font-size: 15px;
   }
   .terminal-body {
-    padding: 8px 4px 8px 4px;
+    padding: 8px 12px 8px 12px;
   }
   .pdf-viewer-overlay {
     width: 100vw !important;

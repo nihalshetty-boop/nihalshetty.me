@@ -406,12 +406,20 @@ class Terminal {
             </div>
         `;
         document.getElementById('ascii-art').textContent = asciiArt;
+        
+        // Check if mobile device
+        const isMobile = window.innerWidth <= 900;
+        
+        // Create shorter URLs for mobile
+        const githubUrl = isMobile ? 'github.com/nihalshetty-boop' : 'https://github.com/nihalshetty-boop';
+        const linkedinUrl = isMobile ? 'linkedin.com/in/nihaldshetty/' : 'https://www.linkedin.com/in/nihaldshetty/';
+        
         document.getElementById('info-block').innerHTML = `
             <div class="info-name">Nihal Dayanand Shetty</div>
             <div class="info-separator"></div>
             <a class="info-link" href="${portfolioData.resume}">${icons.resume} Resume &rarr; <span style="font-size:14px;">View my resume</span></a>
-            <a class="info-link" href="${portfolioData.github}" target="_blank">${icons.github} GitHub &rarr; <span style="font-size:14px;">https://github.com/nihalshetty-boop</span></a>
-            <a class="info-link" href="${portfolioData.linkedin}" target="_blank">${icons.linkedin} LinkedIn &rarr; <span style="font-size:14px;">https://www.linkedin.com/in/nihaldshetty/</span></a>
+            <a class="info-link" href="${portfolioData.github}" target="_blank">${icons.github} GitHub &rarr; <span style="font-size:14px;">${githubUrl}</span></a>
+            <a class="info-link" href="${portfolioData.linkedin}" target="_blank">${icons.linkedin} LinkedIn &rarr; <span style="font-size:14px;">${linkedinUrl}</span></a>
             <a class="info-link" href="mailto:${portfolioData.email}">${icons.email} Email &rarr; <span style="font-size:14px;">${portfolioData.email}</span></a>
         `;
         
