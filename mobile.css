@@ -1,12 +1,12 @@
 @media only screen and (max-width: 900px) {
   .terminal {
     width: calc(100vw - 20px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 110px);
     position: fixed;
     top: max(20px, env(safe-area-inset-top));
     left: max(10px, env(safe-area-inset-left));
     right: max(10px, env(safe-area-inset-right));
-    bottom: max(20px, env(safe-area-inset-bottom));
+    bottom: max(60px, env(safe-area-inset-bottom));
     min-width: unset;
     max-width: unset;
     border-radius: 8px;
@@ -26,6 +26,8 @@
     overflow-x: hidden !important;
     width: 100vw !important;
     max-width: 100vw !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
   .terminal-header {
     border-radius: 0;
@@ -97,6 +99,14 @@
     align-items: flex-start !important;
     flex-direction: row !important;
     flex-wrap: wrap !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 10px !important;
+    right: 10px !important;
+    background: var(--background-color) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    z-index: 1000 !important;
+    margin-bottom: 10px !important;
   }
   
   .input-line .prompt {
